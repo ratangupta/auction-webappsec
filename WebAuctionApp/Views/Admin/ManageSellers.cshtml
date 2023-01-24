@@ -1,0 +1,54 @@
+﻿@using WebAuctionApp.Areas.Identity.Data
+
+@model IEnumerable<AppUser>
+
+@{
+    ViewData["Title"] = "Manage Sellers";
+}
+
+<div class="row">
+    <div class="col-10">
+        <h3>Manage Sellers</h3>
+    </div>
+</div>
+<hr />
+@if (Model.Any())
+{
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">UserName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 1;}
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <form asp-action="ManageSellers" method="post" asp-route-id="@user.Id">
+                        <td><button class="btn btn-danger">Delete</button></td>
+                        </form>
+                        <td> Please note that deleting this seller will delete all their auctions as well. </td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h5>No Buyers registered</h5>
+}
+<hr />
+<div>
+    <a asp-action="Index">Back to Admin Dashboard</a>
+</div>

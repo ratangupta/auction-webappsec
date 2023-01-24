@@ -1,0 +1,15 @@
+﻿@model WebAuctionApp.Models.Bid
+
+@{
+    ViewData["Title"] = "ConfirmBid";
+}
+
+<div>
+    <h3>Your bid is confirmed!</h3>
+    <hr />
+    <p>You placed a bid of $@Html.DisplayFor(model => model.bidAmount)</p>
+</div>
+<hr />
+<div>
+    <a asp-controller="Auctions" asp-action="Index">Return to Homepage</a>
+</div>

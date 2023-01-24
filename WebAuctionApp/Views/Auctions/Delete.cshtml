@@ -1,0 +1,58 @@
+﻿@model WebAuctionApp.Models.Auction
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h4>Are you sure you want to delete this auction?</h4>
+<div>
+    <h4>@Html.DisplayFor(model => model.productName)</h4>
+    <hr />
+    <div class="card border-dark mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(model => model.productName)</h5>
+                    <p class="card-text">@Html.DisplayFor(model => model.productDescription)</p>
+                    <p class="card-text">Auction Live For: @Html.DisplayFor(model => model.bidTime) hours</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.DisplayNameFor(model => model.currBid): $@Html.DisplayFor(model => model.currBid)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.DisplayNameFor(model => model.currBidder): @Html.DisplayFor(model => model.currBidder)
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Bidding Starts at: $@Html.DisplayFor(model => model.startBid)
+                            </div>
+                            <div class="col-md-4">
+                                Bidding Ends At: $@Html.DisplayFor(model => model.endBid)
+                            </div>
+                            <div class="col-md-4">
+                                Minimum Bid Increment: $@Html.DisplayFor(model => model.bidIncrement)
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <img src="~/data/AuctionImages/@Html.DisplayFor(model => model.imagePath)" class="card-img" width="250" height="250">
+            </div>
+        </div>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="auctionID" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>
+<hr />
+<div>
+    <a asp-action="MyAuctions">Back to My Auctions</a>
+</div>

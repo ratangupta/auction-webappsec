@@ -1,0 +1,49 @@
+﻿@model WebAuctionApp.ViewModels.MyBids;
+
+@{
+    ViewData["Title"] = "MyBids";
+}
+
+<script>
+    window.setTimeout(function () {
+        window.location.reload();
+    }, 30000);
+</script>
+
+<div class="row">
+    <div class="col-10">
+        <h3>My Bids</h3>
+    </div>
+</div>
+<hr />
+<div class="row">
+    @foreach (var auctionBid in Model.auctionBids)
+    {
+        <div class="card col-md-5 border-dark mb-3" style="width: 18rem; margin: 25px;">
+            <div class="row no-gutters">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => auctionBid.auction.productName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => auctionBid.auction.productDescription)</p>
+                        <p class="card-text">My Bid: $@Html.DisplayFor(modelItem => auctionBid.bid.bidAmount)</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/data/AuctionImages/@Html.DisplayFor(modelItem => auctionBid.auction.imagePath)" class="card-img" width="250" height="150">
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6">Bidding Ends At: $@Html.DisplayFor(modelItem => auctionBid.auction.endBid)</div>
+                        <div class="col-sm-6">Increment: $@Html.DisplayFor(modelItem => auctionBid.auction.bidIncrement)</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+<hr />
+<div>
+    <a asp-controller="Auctions" asp-action="Index">Return to Homepage</a>
+</div>

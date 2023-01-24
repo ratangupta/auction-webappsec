@@ -1,0 +1,128 @@
+﻿@model IEnumerable<WebAuctionApp.Models.Auction>
+
+@{
+    ViewData["Title"] = "MyAuctions";
+}
+
+<script>
+    window.setTimeout(function () {
+        window.location.reload();
+    }, 30000);
+</script>
+
+<div class="row">
+    <div class="col-10">
+        <h3>My Auctions</h3>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-outline-primary btn-lg" asp-action="Create">Create New</a>
+    </div>
+</div>
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        @if (item.isActive == true)
+        {
+            <div class="card col-md-5 border-success mb-3" style="width: 18rem; margin: 25px;">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.productName)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.productDescription)</p>
+                            <p class="card-text">Auction Live Till: @Html.DisplayFor(modelItem => item.bidTime) hours</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="~/data/AuctionImages/@item.imagePath" class="card-img mt-2" width="250" height="150">
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                @Html.DisplayNameFor(model => model.currBid): $@Html.DisplayFor(modelItem => item.currBid)
+                            </div>
+                            <div class="col-sm-7">
+                                @Html.DisplayNameFor(model => model.currBidder): @Html.DisplayFor(modelItem => item.currBidder)
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-5">Increment: $@Html.DisplayFor(modelItem => item.bidIncrement)</div>
+                            <div class="col-sm-7">End: $@Html.DisplayFor(modelItem => item.endBid)</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <a asp-action="Details" asp-route-id="@item.auctionID">View</a> |
+                            <a asp-action="Edit" asp-route-id="@item.auctionID">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.auctionID"> Delete</a>
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <p class="text-success">Active</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</div>
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        @if (item.isActive == false)
+        {
+            <div class="card col-md-5 border-danger mb-3" style="width: 18rem; margin: 25px;">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.productName)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.productDescription)</p>
+                            <p class="card-text">Ended At: @Html.DisplayFor(modelItem => item.bidTime) hours</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="~/data/AuctionImages/@item.imagePath" class="card-img mt-2" width="250" height="150">
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                @Html.DisplayNameFor(model => model.currBid): $@Html.DisplayFor(modelItem => item.currBid)
+                            </div>
+                            <div class="col-sm-7">
+                                @Html.DisplayNameFor(model => model.currBidder): @Html.DisplayFor(modelItem => item.currBidder)
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-5">Increment: $@Html.DisplayFor(modelItem => item.bidIncrement)</div>
+                            <div class="col-sm-7">End: $@Html.DisplayFor(modelItem => item.endBid)</div>
+
+                        </div>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <a asp-action="Details" asp-route-id="@item.auctionID">View</a> |
+                            <a asp-action="Delete" asp-route-id="@item.auctionID"> Delete</a>
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <p class="text-danger text-right">Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</div>

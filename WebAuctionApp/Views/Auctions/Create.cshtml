@@ -1,0 +1,60 @@
+﻿@model WebAuctionApp.Models.Auction
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Create Auction</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="productName" class="control-label"></label>
+                <input asp-for="productName" class="form-control" />
+                <span asp-validation-for="productName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productDescription" class="control-label"></label>
+                <input asp-for="productDescription" class="form-control" />
+                <span asp-validation-for="productDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="startBid" class="control-label"></label>
+                <input asp-for="startBid" class="form-control" />
+                <span asp-validation-for="startBid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endBid" class="control-label"></label>
+                <input asp-for="endBid" class="form-control" />
+                <span asp-validation-for="endBid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bidIncrement" class="control-label"></label>
+                <input asp-for="bidIncrement" class="form-control" />
+                <span asp-validation-for="bidIncrement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bidTime" class="control-label"></label>
+                <input asp-for="bidTime" class="form-control" type="datetime-local" asp-format="{0:yyyy-MM--ddTHH:mm}" />
+                <span asp-validation-for="bidTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="imagePath" class="control-label">Upload Product Image</label>
+                <input type="file" accept=".jpg, .jpeg, .png" asp-for="imagePath" class="form-control" name="imagePath"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MyAuctions">Back to My Auctions</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

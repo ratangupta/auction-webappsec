@@ -1,0 +1,15 @@
+﻿@model WebAuctionApp.Models.Auction
+
+@{
+    ViewData["Title"] = "Bid Not Found";
+
+}
+
+<h1>Error: No Existing Bid</h1>
+<p>
+    Please place a bid first.
+</p>
+<hr />
+<div>
+    <a asp-action="Index" asp-controller="Auctions">Back to Homepage</a>
+</div>
